@@ -9,8 +9,9 @@ npm run dev      # web en http://localhost:5173 (API + sockets en :3001)
 npm test
 ```
 
-Producción: `npm run build && npm start` (un solo proceso Node sirve front, API y WebSockets).
-Necesita un host con proceso persistente (Railway, Render, Fly, VPS) porque las salas viven en memoria.
+Producción en un host Node persistente: `npm run build && npm start` (un solo proceso sirve front, API y WebSockets).
+
+También se puede desplegar en Vercel: `npm run build` genera `dist/` y la función `api/index.js`; `vercel.json` enruta API y Socket.IO a esa función. La versión publicada usa WebSockets de Vercel Functions (beta). **Limitación:** las salas, los asientos y los tokens de audio viven en memoria; si Vercel distribuye jugadores o peticiones entre distintas instancias, una sala puede no encontrarse o el audio puede fallar. Para multijugador confiable a escala hace falta un backend persistente o estado compartido.
 
 ## Cómo funciona
 

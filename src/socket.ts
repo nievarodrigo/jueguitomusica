@@ -18,7 +18,7 @@ function playerId(): string {
   }
 }
 
-export const socket = io({ auth: { pid: playerId() }, transports: ['websocket'] });
+export const socket = io({ auth: { pid: playerId() }, path: '/socket.io/connect', addTrailingSlash: false, transports: ['websocket'] });
 
 export const actions = {
   create: (name: string, solo: boolean) => socket.emit('create', { name, solo }),
